@@ -16,8 +16,10 @@
           </button>
           <a href="/notes/delete/<?= esc($notes_item['id']) ?>" class="btn btn-danger">Delete</a>
 
-          
+
         </div>
+
+
 
         <!-- Modal -->
         <div class="modal fade" id="exampleModal<?= esc($notes_item['id']) ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -49,6 +51,16 @@
 
       <?php endforeach ?>
 
+      
+
+
+      </div>
+
+      <div class="container my-3 mx-3">
+
+      <div class="mt-3 mb-3">
+            <?= $pager->links(); ?>
+        </div>
       </div>
 
     <?php else : ?>

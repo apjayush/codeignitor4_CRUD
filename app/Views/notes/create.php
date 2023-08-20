@@ -1,4 +1,5 @@
 <link rel="stylesheet" href="<?php echo base_url('css/bootstrap.min.css'); ?>">
+<link rel="stylesheet" href="<?php echo base_url('css/pagination.css'); ?>">
 <script src="<?= base_url('/js/bootstrap.bundle.js') ?>"></script>
 
 

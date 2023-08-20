@@ -1,0 +1,12 @@
+li{
+    margin: 5px 5px 5px 5px;
+}
+
+.active{
+    background-color: rgb(97, 187, 251);
+}
+
+ul li a{
+    text-decoration: none;
+    padding: 5px 5px 5px 5px;
+}

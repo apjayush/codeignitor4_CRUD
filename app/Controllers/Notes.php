@@ -3,7 +3,7 @@
 namespace App\Controllers;
 
 
-use Ramsey\Uuid\Uuid;
+
 use App\Models\NotesModel;
 // use CodeIgniter\Exceptions\PageNotFoundException;
 
@@ -16,10 +16,19 @@ class Notes extends BaseController
 
         $model = model(NotesModel::class);
 
-
+        // Load the pagination library
+       $pager = \Config\Services::pager();
+    
+        // Define pagination settings
+        $perPage = 3; // Number of notes per page
+        $currentPage = $this->request->getVar('page') ? (int) $this->request->getVar('page') : 1;
+    
         $data = [
-            'notes' => $model->getNotes()
+            'notes' => $model->paginate($perPage),
+            'pager' => $model->pager,
         ];
+
+
 
         helper('form');
 
@@ -57,7 +66,10 @@ class Notes extends BaseController
 
 
         //refetching the data from the database after saving
-        $data['notes'] = $model->getNotes();
+        $data = [
+            'notes' => $model->paginate($perPage),
+            'pager' => $model->pager,
+        ];
 
         //        
 
@@ -114,24 +126,24 @@ class Notes extends BaseController
         return redirect()->to('/notes/create'); // Redirect to the create page
     }
 
-     // * *********  This is DELETE method for CRUD APP  ***************    
+    // * *********  This is DELETE method for CRUD APP  ***************    
 
 
 
+    public function delete($id)
+    {
+
+        $model = model(NotesModel::class);
+
+
+        // Delete the record from the database
+        $model->delete($id);
+
+        // Redirect to a success page or list of records
+        return redirect()->to('/notes/create'); // Change the URL as needed
+    }
 
 
 
-     public function delete($id)
-{
-
-    $model = model(NotesModel::class);
-
-    
-    // Delete the record from the database
-    $model->delete($id);
-
-    // Redirect to a success page or list of records
-    return redirect()->to('/notes/create'); // Change the URL as needed
-}
-
+  
 }
